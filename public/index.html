@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="styles.css">
     <style>
         h1 {
-            font-size: 4rem; /* 或更大的值 */
+            font-size: 2rem; /* 或更大的值 */
         }
         
         .menu-item {
@@ -37,8 +37,19 @@
                 <input type="number" id="peopleCount" min="1" value="1" onchange="updateQuantityForAllDishes()">
             </div>
             
-            <div class="menu-items" id="menuItems">
-                <!-- Menu items will be populated here -->
+            <div class="menu-items">
+                <div class="menu-category">
+                    <h2>Entree</h2>
+                    <div id="entreeItems" class="category-items"></div>
+                </div>
+                <div class="menu-category">
+                    <h2>Main</h2>
+                    <div id="mainItems" class="category-items"></div>
+                </div>
+                <div class="menu-category">
+                    <h2>Dessert</h2>
+                    <div id="dessertItems" class="category-items"></div>
+                </div>
             </div>
             
             <button onclick="calculateOrder()">Calculate Ingredients</button>

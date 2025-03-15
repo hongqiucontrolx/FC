@@ -13,19 +13,37 @@ window.addEventListener('load', async () => {
 
 // Display the menu items and their quantity inputs
 function displayMenu() {
-    const menuContainer = document.getElementById('menuItems');
-    menuContainer.innerHTML = menuData.map(item => `
-        <div class="menu-item">
-            <h3>${item.name}</h3>
-            <label>
-                <input type="checkbox" 
-                       id="dish-${item.id}" 
-                       checked
-                       onchange="updateDishQuantity(this)">
-                Include this dish
-            </label>
-        </div>
-    `).join('');
+    const entreeContainer = document.getElementById('entreeItems');
+    const mainContainer = document.getElementById('mainItems');
+    const dessertContainer = document.getElementById('dessertItems');
+    
+    // Clear existing content
+    entreeContainer.innerHTML = '';
+    mainContainer.innerHTML = '';
+    dessertContainer.innerHTML = '';
+    
+    menuData.forEach(item => {
+        const menuItem = `
+            <div class="menu-item">
+                <h3>${item.name}</h3>
+                <label>
+                    <input type="checkbox" 
+                           id="dish-${item.id}" 
+                           checked
+                           onchange="updateDishQuantity(this)">
+                    Include this dish
+                </label>
+            </div>
+        `;
+        
+        if (item.category === 'entree') {
+            entreeContainer.innerHTML += menuItem;
+        } else if (item.category === 'main') {
+            mainContainer.innerHTML += menuItem;
+        } else if (item.category === 'dessert') {
+            dessertContainer.innerHTML += menuItem;
+        }
+    });
 }
 
 // Update quantities based on checkbox state
