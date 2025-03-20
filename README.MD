@@ -11,13 +11,9 @@ vscode
 
 运行 `node index.js` 运行项目
 
-
-
-
-Cursor
-
-https://www.cursor.com/
-
-shift alt f
-
+# command
+```
 npm start
+npm run menu
+cmd>>>>>>>>>>>>>>>>>git clone 
+```
