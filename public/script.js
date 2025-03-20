@@ -58,11 +58,37 @@ async function calculateOrder() {
     // Get the total number of people
     const peopleCount = parseInt(document.getElementById('peopleCount').value) || 1;
     
-    // Get all selected dishes - simplified without alternate drop logic
-    const selectedDishes = menuData.map(item => ({
-        id: item.id,
-        quantity: document.getElementById(`dish-${item.id}`).checked ? 1 : 0
-    })).filter(dish => dish.quantity > 0);
+    // Group selected dishes by category
+    const selectedByCategory = {
+        entree: [],
+        main: [],
+        dessert: []
+    };
+    
+    // First, group all selected dishes by their category
+    menuData
+        .filter(item => document.getElementById(`dish-${item.id}`).checked)
+        .forEach(item => {
+            selectedByCategory[item.category].push(item);
+        });
+    
+    // Calculate quantities for each category and create final selected dishes array
+    const selectedDishes = [];
+    
+    Object.entries(selectedByCategory).forEach(([category, dishes]) => {
+        if (dishes.length > 0) {
+            // Calculate quantity based on number of dishes in this category
+            const quantityPerDish = Math.ceil(peopleCount / dishes.length);
+            
+            dishes.forEach(dish => {
+                selectedDishes.push({
+                    id: dish.id,
+                    quantity: quantityPerDish,
+                    category: category
+                });
+            });
+        }
+    });
     
     try {
         const response = await fetch('/api/calculate', {

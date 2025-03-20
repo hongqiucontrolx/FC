@@ -1,114 +1,105 @@
 [
-  
-    {
-        "category": "entree",
-        "name": "Moroccan spiced Ocean Trout | tahini yoghurt | pickled radish | walnuts | cavia",
-        "ingredients": {
-          "trout/salmon": 40,
-          "tahini": 2,
-          "yoghurt": 20,
-          "moroccan spice": 2,
-          "radish": 10,
-          "walnut": 5,
-          "cavia": 5,
-          "soft herbs": 1,
-          "vinegar": 10
-        }
-    },
-
-    {
-        "id": 5,
-        "category": "entree",
-        "name": "Smoked Chicken Breast | Granny Smith apple puree | witlof | onion marmalade | toasted walnuts",
-        "ingredients": {
-            "smoked chicken breast": 70,
-            "potato": 100,
-            "beans": 20,
-            "butter": 15,
-            "mustard": 1,
-            "cream": 20,
-            "jus": 10,
-            "water cress": 2,
-            "spring onion": 5
-        }
-    },
-    {
-        "id": 6,
-        "category": "main",
-        "name": "Roasted Marion Bay chicken breast | champ potatoes | buttered beans | mustard veloute | water cress",
-        "ingredients": {
-            "chicken breast": 170,
-            "potato": 110,
-            "beans": 20,
-            "butter": 10,
-            "mustard": 1,
-            "cream": 20,
-            "jus": 10,
-            "water cress": 2,
-            "spring onion": 5
-        }
-    },
-    {
-        "id": 7,
-        "category": "main",
-        "name": "Cape Grim beef fillet | horseradish & potato puree | broccolini | | red wine jus",
-        "ingredients": {
-            "beef fillet": 180,
-            "potato": 110,
-            "horseradish": 2,
-            "broccolini": 50,
-            "red wine jus": 10
-        }
-    },
-    {
-        "id": 8,
-        "category": "dessert",
-        "name": "Valrhona chocolate tart | cherry puree [vanilla ice cream | hazelnut crumble",
-        "ingredients": {
-            "chocolate tart": 1,
-            "cherry puree": 20,
-            "vanilla ice cream": 20,
-            "hazelnut": 10
-        }
-    },
-    {
-        "id": 9,
-        "category": "dessert",
-        "name": "Vanilla vacherin, local berries, lemon curd, cream Chantilly",
-        "ingredients": {
-            "egg white": 30,
-            "mix berries": 20,
-            "lemon curd": 10,
-            "cream": 10
-        }
-    },
-    {
-        "id": 1,
-        "name": "Sticky date pudding | vanilla ice cream | caramel sauce | toffee almonds",
-        "category": "dessert",
-        "ingredients": {
-            "sticky date pudding": 1.0,
-            "vanilla ice cream": 20.0,
-            "brown sugar": 15.0,
-            "cream": 15.0,
-            "butter": 5.0,
-            "almonds": 5.0,
-            "caster sugar": 10.0
-        }
-    },
-    {
-        "id": 2,
-        "name": "Vanilla bean panna cotta | berry compote | coconut & demerara crumble",
-        "category": "dessert",
-        "ingredients": {
-            "vanilla bean": 2.0,
-            "milk": 30.0,
-            "cream": 30.0,
-            "gelatin": 1.0,
-            "mixed berries": 20.0,
-            "coulis": 10.0,
-            "coconut": 5.0,
-            "flour": 10.0
-        }
+  {
+    "id": 1,
+    "name": "Moroccan spiced Ocean Trout | tahini yoghurt | pickled radish | walnuts | cavia",
+    "category": "entree",
+    "ingredients": {
+      "trout/salmon": 40,
+      "tahini": 2,
+      "yoghurt": 20,
+      "moroccan spice ": 2,
+      "radish": 10,
+      "walnut": 5,
+      "cavia": 5,
+      "soft herbs": 1,
+      "vinegar": 10
     }
+  },
+  {
+    "id": 2,
+    "name": "Smoked chicken breast | Granny Smith apple puree | witlof | onion marmalade | toasted walnuts",
+    "category": "entree",
+    "ingredients": {
+      "Smoked chicken breast": 70,
+      "Granny Smith apple": 20,
+      "witlof  ": 5,
+      "onion marmalade ": 8,
+      "walnuts": 5
+    }
+  },
+  {
+    "id": 3,
+    "name": "Roasted Marion Bay chicken breast | champ potatoes | buttered beans | mustard veloute | water cress",
+    "category": "main",
+    "ingredients": {
+      "chicken breast": 170,
+      "potato": 110,
+      "beans ": 20,
+      "mustard ": 1,
+      "jus": 10,
+      "water cress": 2,
+      "spring onion": 5
+    }
+  },
+  {
+    "id": 4,
+    "name": "Cape Grim beef fillet | horseradish & potato puree | broccolini | | red wine jus",
+    "category": "main",
+    "ingredients": {
+      "potato": 110,
+      "jus": 10,
+      "beef fillet": 180,
+      "horeseradish": 2,
+      "broccolini": 50
+    }
+  },
+  {
+    "id": 5,
+    "name": "Valrhona chocolate tart | cherry puree [vanilla ice cream | hazelnut crumble",
+    "category": "dessert",
+    "ingredients": {
+      "chocolate tart": 1,
+      "cherry puree": 20,
+      "hazelnut": 10
+    }
+  },
+  {
+    "id": 6,
+    "name": "Vanilla vacherin, local berries, lemon curd, cream Chantilly ",
+    "category": "dessert",
+    "ingredients": {
+      "egg white": 30,
+      "mix berries": 20,
+      "lemon curd ": 10
+    }
+  },
+  {
+    "id": 7,
+    "name": "Sticky date pudding | vanilla ice cream | caramel sauce | toffee almonds",
+    "category": "dessert",
+    "ingredients": {
+      "butter": 5,
+      "vanilla ice cream": 20,
+      "sticky date pudding": 1,
+      "brown sugar": 15,
+      "almonds": 5,
+      "caster sugar": 10
+    }
+  },
+  {
+    "id": 8,
+    "name": "Vanilla bean panna cotta | berry compote | coconut & demerara crumble",
+    "category": "dessert",
+    "ingredients": {
+      "cream": 30,
+      "brown sugar": 5,
+      "vanilla": 2,
+      "milk": 30,
+      "gelatin": 1,
+      "mix berry": 20,
+      "coli": 10,
+      "coconut": 5,
+      "flour": 10
+    }
+  }
 ]

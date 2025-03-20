@@ -16,7 +16,7 @@ app.get('/api/menu', (req, res) => {
 
 // Handle order calculations
 app.post('/api/calculate', (req, res) => {
-    const { selectedDishes, peopleCount } = req.body;
+    const { selectedDishes } = req.body;
     const menu = require('./menu.json');
     
     // Calculate total ingredients
@@ -26,7 +26,8 @@ app.post('/api/calculate', (req, res) => {
         const menuItem = menu.find(item => item.id === dish.id);
         if (menuItem) {
             Object.entries(menuItem.ingredients).forEach(([ingredient, amount]) => {
-                const totalAmount = (amount * dish.quantity * peopleCount);
+                // Use the dish-specific quantity instead of peopleCount
+                const totalAmount = amount * dish.quantity;
                 totalIngredients[ingredient] = (totalIngredients[ingredient] || 0) + totalAmount;
             });
         }
