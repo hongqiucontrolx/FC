@@ -21,7 +21,7 @@
         "category": "entree",
         "name": "Smoked Chicken Breast | Granny Smith apple puree | witlof | onion marmalade | toasted walnuts",
         "ingredients": {
-            "chicken breast": 170,
+            "smoked chicken breast": 70,
             "potato": 100,
             "beans": 20,
             "butter": 15,
@@ -80,6 +80,35 @@
             "mix berries": 20,
             "lemon curd": 10,
             "cream": 10
+        }
+    },
+    {
+        "id": 1,
+        "name": "Sticky date pudding | vanilla ice cream | caramel sauce | toffee almonds",
+        "category": "dessert",
+        "ingredients": {
+            "sticky date pudding": 1.0,
+            "vanilla ice cream": 20.0,
+            "brown sugar": 15.0,
+            "cream": 15.0,
+            "butter": 5.0,
+            "almonds": 5.0,
+            "caster sugar": 10.0
+        }
+    },
+    {
+        "id": 2,
+        "name": "Vanilla bean panna cotta | berry compote | coconut & demerara crumble",
+        "category": "dessert",
+        "ingredients": {
+            "vanilla bean": 2.0,
+            "milk": 30.0,
+            "cream": 30.0,
+            "gelatin": 1.0,
+            "mixed berries": 20.0,
+            "coulis": 10.0,
+            "coconut": 5.0,
+            "flour": 10.0
         }
     }
 ]

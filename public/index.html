@@ -6,24 +6,175 @@
     <title>Restaurant Order Calculator</title>
     <link rel="stylesheet" href="styles.css">
     <style>
+        /* 重置所有元素的 box-sizing */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto; /* 容器居中 */
+            padding: 0 20px;
+        }
+
         h1 {
-            font-size: 2rem; /* 或更大的值 */
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            text-align: left; /* 标题左对齐 */
         }
-        
+
+        .form-group {
+            margin-bottom: 1rem;
+            max-width: 300px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            text-align: left; /* 标签文本左对齐 */
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.5rem;
+            font-size: 1rem;
+            text-align: left; /* 输入框文本左对齐 */
+        }
+
+        .content-wrapper {
+            display: flex;
+            justify-content: space-between; /* 内容分布 */
+            gap: 2rem;
+        }
+
+        .menu-section {
+            flex: 1;
+            max-width: 65%;
+        }
+
+        .right-section {
+            flex: 1;
+            max-width: 30%;
+            display: flex;
+            flex-direction: column;
+            gap: 0; /* 删除间隙 */
+        }
+
+        .calculate-section {
+            margin-top: 1.2rem; /* 与Entree标题对齐 */
+            margin-bottom: 0; /* 完全没有底部间距 */
+        }
+
+        .calculate-section button {
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px 4px 0 0; /* 仅顶部有圆角 */
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+            text-align: center; /* 按钮文本居中 */
+        }
+
+        .calculate-section button:hover {
+            background-color: #0056b3;
+        }
+
+        .results {
+            margin-top: 0; /* 移除顶部外边距 */
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-top: none; /* 移除顶部边框 */
+            border-radius: 0 0 8px 8px; /* 仅底部有圆角 */
+            background-color: #f9f9f9;
+        }
+
+        .results h2 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            text-align: left; /* 结果标题左对齐 */
+        }
+
+        .course-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .course-section h2 {
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+            text-align: left; /* 课程标题左对齐 */
+        }
+
+        .menu-items {
+            display: flex;
+            flex-direction: column;
+        }
+
         .menu-item {
-            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start; /* 菜单项内容左对齐 */
+            gap: 0.25rem;
+            padding: 0.2rem 0.3rem;
+            border-bottom: 1px solid #f0f0f0;
+            height: 24px;
+            overflow: hidden;
+            width: 100%;
         }
-        
+
         .menu-item label {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 0.25rem;
             cursor: pointer;
+            width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-size: 0.95rem;
+            line-height: 1.1;
+            justify-content: flex-start; /* 标签内容左对齐 */
+        }
+
+        .menu-item input[type="checkbox"] {
+            width: 14px;
+            height: 14px;
+            margin: 0;
+            flex-shrink: 0;
+        }
+
+        .ingredient-category {
+            margin-bottom: 1rem;
+            text-align: left; /* 配料类别左对齐 */
         }
         
-        .menu-item input[type="checkbox"] {
-            width: 20px;
-            height: 20px;
+        .category-title {
+            font-size: 1rem;
+            color: #333;
+            margin-bottom: 0.3rem;
+            padding-bottom: 0.2rem;
+            border-bottom: 1px solid #ddd;
+            text-align: left; /* 类别标题左对齐 */
+        }
+        
+        .category-items {
+            padding-left: 0.5rem;
+            text-align: left; /* 类别项目左对齐 */
+        }
+        
+        .category-items p {
+            margin: 0.2rem 0;
+            font-size: 0.9rem;
+            text-align: left; /* 段落左对齐 */
         }
     </style>
 </head>
@@ -31,33 +182,45 @@
     <div class="container">
         <h1>Restaurant Order Calculator</h1>
         
-        <div class="order-form">
-            <div class="form-group">
-                <label for="peopleCount">Number of People:</label>
-                <input type="number" id="peopleCount" min="1" value="1" onchange="updateQuantityForAllDishes()">
-            </div>
-            
-            <div class="menu-items">
-                <div class="menu-category">
-                    <h2>Entree</h2>
-                    <div id="entreeItems" class="category-items"></div>
-                </div>
-                <div class="menu-category">
-                    <h2>Main</h2>
-                    <div id="mainItems" class="category-items"></div>
-                </div>
-                <div class="menu-category">
-                    <h2>Dessert</h2>
-                    <div id="dessertItems" class="category-items"></div>
-                </div>
-            </div>
-            
-            <button onclick="calculateOrder()">Calculate Ingredients</button>
+        <div class="form-group">
+            <label for="peopleCount">Number of People:</label>
+            <input type="number" id="peopleCount" min="1" value="1" onchange="updateQuantityForAllDishes()">
         </div>
         
-        <div class="results" id="results">
-            <h2>Required Ingredients:</h2>
-            <div id="ingredientsList"></div>
+        <div class="content-wrapper">
+            <div class="menu-section">
+                <div class="course-section">
+                    <h2>Entree</h2>
+                    <div class="menu-items" id="entreeItems">
+                        <!-- Entree items will be populated here -->
+                    </div>
+                </div>
+                
+                <div class="course-section">
+                    <h2>Main</h2>
+                    <div class="menu-items" id="mainItems">
+                        <!-- Main items will be populated here -->
+                    </div>
+                </div>
+                
+                <div class="course-section">
+                    <h2>Dessert</h2>
+                    <div class="menu-items" id="dessertItems">
+                        <!-- Dessert items will be populated here -->
+                    </div>
+                </div>
+            </div>
+            
+            <div class="right-section">
+                <div class="calculate-section">
+                    <button onclick="calculateOrder()">Calculate Ingredients</button>
+                </div>
+                
+                <div class="results" id="results">
+                    <h2>Required Ingredients:</h2>
+                    <div id="ingredientsList"></div>
+                </div>
+            </div>
         </div>
     </div>
     

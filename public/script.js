@@ -25,13 +25,9 @@ function displayMenu() {
     menuData.forEach(item => {
         const menuItem = `
             <div class="menu-item">
-                <h3>${item.name}</h3>
                 <label>
-                    <input type="checkbox" 
-                           id="dish-${item.id}" 
-                           checked
-                           onchange="updateDishQuantity(this)">
-                    Include this dish
+                    <input type="checkbox" id="dish-${item.id}">
+                    ${item.name}
                 </label>
             </div>
         `;
@@ -59,8 +55,10 @@ function updateQuantityForAllDishes() {
 
 // Calculate the total ingredients based on the number of people and selected dishes
 async function calculateOrder() {
+    // Get the total number of people
     const peopleCount = parseInt(document.getElementById('peopleCount').value) || 1;
     
+    // Get all selected dishes - simplified without alternate drop logic
     const selectedDishes = menuData.map(item => ({
         id: item.id,
         quantity: document.getElementById(`dish-${item.id}`).checked ? 1 : 0
@@ -72,7 +70,10 @@ async function calculateOrder() {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ selectedDishes, peopleCount })
+            body: JSON.stringify({ 
+                selectedDishes, 
+                peopleCount 
+            })
         });
         
         const data = await response.json();
@@ -82,15 +83,63 @@ async function calculateOrder() {
     }
 }
 
-// Display the results in the 'ingredientsList' section
+// Display the results in the 'ingredientsList' section with categories
 function displayResults(ingredients) {
     const resultsDiv = document.getElementById('results');
     const ingredientsList = document.getElementById('ingredientsList');
     
-    ingredientsList.innerHTML = Object.entries(ingredients)
-        .map(([ingredient, amount]) => `
-            <p><strong>${ingredient}:</strong> ${amount} grams</p>
-        `).join('');
+    // Define ingredient categories
+    const categories = {
+        "PFD": {},
+        "BEST FRESH": {}
+    };
     
+    // Define vegetables for BEST FRESH category
+    const vegetables = ["potato", "onion", "carrot", "tomato", "lettuce", "beans", "spring onion", "water cress", 
+                       "broccoli", "spinach", "cauliflower", "cabbage", "bell pepper", "garlic", "celery", "corn"];
+    
+    // Sort ingredients into categories
+    Object.entries(ingredients).forEach(([ingredient, amount]) => {
+        if (vegetables.some(veg => ingredient.toLowerCase().includes(veg.toLowerCase()))) {
+            categories["BEST FRESH"][ingredient] = amount;
+        } else {
+            categories["PFD"][ingredient] = amount;
+        }
+    });
+    
+    // Generate HTML for categorized ingredients
+    let html = '';
+    
+    // Display in order: PFD first, then BEST FRESH
+    const displayOrder = ["PFD", "BEST FRESH"];
+    
+    displayOrder.forEach(category => {
+        const items = categories[category];
+        if (Object.keys(items).length === 0) return;
+        
+        html += `<div class="ingredient-category">
+            <h3 class="category-title">${category}</h3>
+            <div class="category-items">`;
+            
+        Object.entries(items).forEach(([ingredient, amount]) => {
+            html += `<p><strong>${ingredient}:</strong> ${amount} g</p>`;
+        });
+        
+        html += `</div></div>`;
+    });
+    
+    ingredientsList.innerHTML = html;
     resultsDiv.style.display = 'block';
 }
+
+function renderDishCategory(dishes) {
+    return dishes.map(item => `
+        <div class="menu-item">
+            <label>
+                <input type="checkbox" id="dish-${item.id}">
+                ${item.name}
+            </label>
+        </div>
+    `).join('');
+}
+

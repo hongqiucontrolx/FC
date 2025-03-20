@@ -12,14 +12,5 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.21.2"
-  },
-  "devDependencies": {},
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Charlie-Fangx/FC.git"
-  },
-  "bugs": {
-    "url": "https://github.com/Charlie-Fangx/FC/issues"
-  },
-  "homepage": "https://github.com/Charlie-Fangx/FC#readme"
+  }
 }
